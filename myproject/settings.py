@@ -1,6 +1,6 @@
 """
 Django settings for myproject project.
-Production Ready for Railway
+Production Ready for Render
 """
 
 from pathlib import Path
@@ -23,14 +23,11 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    ".railway.app",
-    ".up.railway.app",
-    "*"
+    ".onrender.com",
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.railway.app",
-    "https://*.up.railway.app",
+    "https://*.onrender.com",
 ]
 
 
@@ -176,16 +173,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ==================================================
-# SECURITY FOR HTTPS (Railway Fixed)
+# SECURITY FOR HTTPS (Render Ready)
 # ==================================================
 
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
+SECURE_SSL_REDIRECT = not DEBUG
 
-# Prevent redirect loop on Railway
-SECURE_SSL_REDIRECT = False
-
-# Trust Railway proxy
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_HOST = True
 
