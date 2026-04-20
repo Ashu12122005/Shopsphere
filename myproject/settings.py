@@ -1,6 +1,6 @@
 """
 Django settings for myproject project.
-Production Ready (Render / Railway / VPS)
+Production Ready for Railway
 """
 
 from pathlib import Path
@@ -23,14 +23,14 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    ".onrender.com",
     ".railway.app",
+    ".up.railway.app",
     "*"
 ]
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
     "https://*.railway.app",
+    "https://*.up.railway.app",
 ]
 
 
@@ -59,8 +59,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    # WhiteNoise for static files
     'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -107,7 +105,6 @@ DATABASES = {
     }
 }
 
-# If PostgreSQL URL available automatically use it
 if os.environ.get("DATABASE_URL"):
     import dj_database_url
     DATABASES["default"] = dj_database_url.parse(
@@ -142,7 +139,6 @@ AUTH_PASSWORD_VALIDATORS = [
 # ==================================================
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
@@ -180,12 +176,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ==================================================
-# SECURITY FOR HTTPS
+# SECURITY FOR HTTPS (Railway Fixed)
 # ==================================================
 
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG
-SECURE_SSL_REDIRECT = not DEBUG
+
+# Prevent redirect loop on Railway
+SECURE_SSL_REDIRECT = False
+
+# Trust Railway proxy
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
+
 SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
