@@ -1,0 +1,245 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<style>
+body{
+    background: linear-gradient(135deg,#f8f9ff,#eef3ff);
+    font-family: 'Poppins', sans-serif;
+}
+
+.checkout-wrapper{
+    min-height: 85vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 15px;
+}
+
+.checkout-card{
+    width:100%;
+    max-width:500px;
+    background:#fff;
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 18px 45px rgba(0,0,0,0.08);
+    position:relative;
+    overflow:hidden;
+}
+
+.checkout-card::before{
+    content:"";
+    position:absolute;
+    top:-60px;
+    right:-60px;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#0d6efd,#5a8cff);
+    opacity:.08;
+}
+
+.brand{
+    font-size:30px;
+    font-weight:700;
+    color:#0d6efd;
+    margin-bottom:8px;
+}
+
+.secure-badge{
+    display:inline-block;
+    background:#eaf2ff;
+    color:#0d6efd;
+    padding:8px 15px;
+    border-radius:50px;
+    font-size:13px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+.title{
+    font-size:28px;
+    font-weight:700;
+    color:#111;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:25px;
+}
+
+.amount-box{
+    background:linear-gradient(135deg,#0d6efd,#0048ff);
+    color:#fff;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:25px;
+}
+
+.amount-label{
+    font-size:14px;
+    opacity:.9;
+}
+
+.amount-value{
+    font-size:34px;
+    font-weight:700;
+    margin-top:5px;
+}
+
+.features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:28px;
+}
+
+.feature-item{
+    background:#f8f9fc;
+    padding:14px;
+    border-radius:14px;
+    font-size:14px;
+    color:#333;
+    font-weight:500;
+}
+
+.pay-btn{
+    width:100%;
+    border:none;
+    background:linear-gradient(135deg,#0d6efd,#0048ff);
+    color:#fff;
+    padding:16px;
+    border-radius:14px;
+    font-size:18px;
+    font-weight:700;
+    transition:.3s;
+}
+
+.pay-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 25px rgba(13,110,253,.22);
+}
+
+.loader{
+    display:none;
+    margin-top:16px;
+    color:#0d6efd;
+    font-weight:600;
+}
+
+.note{
+    font-size:13px;
+    color:#777;
+    margin-top:18px;
+}
+
+@media(max-width:576px){
+
+    .checkout-card{
+        padding:25px;
+    }
+
+    .title{
+        font-size:24px;
+    }
+
+    .amount-value{
+        font-size:28px;
+    }
+
+    .features{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+<div class="checkout-wrapper">
+    <div class="checkout-card text-center">
+
+        <div class="brand">ShopSphere</div>
+        <div class="secure-badge">🔒 100% Secure Payment</div>
+
+        <h2 class="title">Complete Your Order</h2>
+        <p class="subtitle">Pay safely using UPI, Card, Netbanking & Wallet</p>
+
+        <div class="amount-box">
+            <div class="amount-label">Total Amount</div>
+            <div class="amount-value">₹{{ amount }}</div>
+        </div>
+
+        <div class="features">
+            <div class="feature-item">💳 Cards Accepted</div>
+            <div class="feature-item">📱 UPI Supported</div>
+            <div class="feature-item">🏦 Netbanking</div>
+            <div class="feature-item">⚡ Instant Checkout</div>
+        </div>
+
+        <button id="rzp-button1" class="pay-btn">
+            Pay ₹{{ amount }}
+        </button>
+
+        <div class="loader" id="loader">
+            Opening secure payment gateway...
+        </div>
+
+        <div class="note">
+            Powered by Razorpay • Trusted & Secure
+        </div>
+
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+var options = {
+    key: "{{ key }}",
+    amount: "{{ payment.amount }}",
+    currency: "INR",
+    name: "ShopSphere",
+    description: "Secure Payment",
+    image: "",
+    order_id: "{{ payment.id }}",
+
+    method: {
+        upi: true,
+        card: true,
+        netbanking: true,
+        wallet: true
+    },
+
+    prefill: {
+        name: "{{ request.user.username }}",
+        email: "",
+        contact: ""
+    },
+
+    notes: {
+        address: "ShopSphere Order Payment"
+    },
+
+    theme: {
+        color: "#0d6efd"
+    },
+
+    handler: function (response) {
+        window.location.href = "/payment-success/";
+    },
+
+    modal: {
+        ondismiss: function () {
+            document.getElementById("loader").style.display = "none";
+        }
+    }
+};
+
+var rzp1 = new Razorpay(options);
+
+document.getElementById("rzp-button1").onclick = function(e){
+    e.preventDefault();
+    document.getElementById("loader").style.display = "block";
+    rzp1.open();
+}
+</script>
+
+{% endblock %}

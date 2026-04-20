@@ -1,0 +1,55 @@
+{% extends 'main.html' %}
+
+{% block title %}My Profile | ShopSphere{% endblock %}
+
+{% block content %}
+
+<div class="account-container">
+
+    <!-- Sidebar -->
+    <aside class="account-sidebar">
+
+        <h3>My Account</h3>
+
+        <a href="{% url 'profile' %}" class="active">Profile</a>
+        <a href="{% url 'my_orders' %}">My Orders</a>
+        <a href="{% url 'cart' %}">Cart</a>
+        <a href="#">Address</a>
+        <a href="#">Security</a>
+        <a href="{% url 'logout_' %}" class="logout">Logout</a>
+
+    </aside>
+
+    <!-- Main Content -->
+    <section class="account-content">
+
+        <div class="profile-card">
+
+            <div class="avatar">
+                <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Profile Avatar">
+            </div>
+
+            <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+
+            <div class="profile-buttons">
+
+                <a href="{% url 'update' %}" class="btn">
+                    Update Profile
+                </a>
+
+                <a href="{% url 'reset' %}" class="btn secondary-btn">
+                    Reset Password
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+{% endblock %}

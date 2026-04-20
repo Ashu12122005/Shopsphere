@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}ShopSphere{% endblock %}</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicon.ico' %}">
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="{% static 'styles.css' %}?v=4">
+
+    <!-- SweetAlert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+
+<body>
+
+<header>
+    {% include 'nav.html' %}
+</header>
+
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+
+{% if messages %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    {% for message in messages %}
+    Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "{{ message.tags }}",
+        title: "{{ message|escapejs }}",
+        showConfirmButton: false,
+        timer: 2200,
+        timerProgressBar: true,
+        background: "#111827",
+        color: "#ffffff"
+    });
+    {% endfor %}
+});
+</script>
+{% endif %}
+
+{% include 'footer.html' %}
+
+
+
+</body>
+</html>

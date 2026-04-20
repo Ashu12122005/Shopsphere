@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+
+{% block title %}Home | ShopSphere{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-text">
+        <h1>Shop Smarter. Live Better 🛍️</h1>
+
+        <p>
+            Discover fashion, electronics, beauty, home essentials
+            and more — all in one trusted marketplace.
+        </p>
+
+        <button onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+            Start Shopping
+        </button>
+    </div>
+</section>
+
+<!-- TRUST BAR -->
+<section class="trust-bar">
+    <div>🚚 Free Delivery</div>
+    <div>🔄 Easy Returns</div>
+    <div>🔒 Secure Payment</div>
+    <div>💵 Cash on Delivery</div>
+</section>
+
+<!-- CATEGORY -->
+<section class="section">
+    <h2>Shop By Category</h2>
+
+    <form method="GET" class="category-buttons">
+        {% for i in category %}
+            <button type="submit" name="cat" value="{{ i }}" class="category-chip">
+                {{ i }}
+            </button>
+        {% endfor %}
+    </form>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+    <h2>🔥 Best Sellers</h2>
+
+    {% if nomatch %}
+        <div class="empty-state">
+            No products found for your search.
+        </div>
+    {% endif %}
+
+    <div class="products-container">
+
+        {% for i in all_products %}
+        <div class="product-card">
+
+            <span class="badge">20% OFF</span>
+
+            <img src="{{ i.pimage.url }}" alt="{{ i.pname }}">
+
+            <div class="product-name">{{ i.pname }}</div>
+
+            <div class="product-rating">
+                ⭐⭐⭐⭐☆ (120)
+            </div>
+
+            <div class="product-desc">
+                {{ i.pdesc|truncatechars:70 }}
+            </div>
+
+            <div class="product-price">
+                ₹{{ i.price }}
+                <span class="old-price">
+                    ₹{{ i.price|add:2000 }}
+                </span>
+            </div>
+
+            <a href="{% url 'addtocart' i.id %}" class="add-cart-btn">
+                🛒 Add to Cart
+            </a>
+
+        </div>
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

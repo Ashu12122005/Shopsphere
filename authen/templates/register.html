@@ -1,0 +1,107 @@
+{% extends 'main.html' %}
+
+{% block title %}Create Account | ShopSphere{% endblock %}
+
+{% block content %}
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <h2>Create Account</h2>
+
+        <p class="auth-sub">
+            Join ShopSphere and start shopping premium beauty products.
+        </p>
+
+        {% if error %}
+        <div class="form-error">
+            Username already exists. Please choose another username.
+        </div>
+        {% endif %}
+
+        {% if pasw %}
+        <div class="info-msg">
+            {{ pasw }}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input
+                    type="text"
+                    id="fname"
+                    name="fname"
+                    placeholder="Enter first name"
+                    autocomplete="given-name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="lname">Last Name</label>
+                <input
+                    type="text"
+                    id="lname"
+                    name="lname"
+                    placeholder="Enter last name"
+                    autocomplete="family-name"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter email address"
+                    autocomplete="email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="uname">Username</label>
+                <input
+                    type="text"
+                    id="uname"
+                    name="uname"
+                    placeholder="Choose username"
+                    autocomplete="username"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="pasw">Password</label>
+                <input
+                    type="password"
+                    id="pasw"
+                    name="pasw"
+                    placeholder="Create password"
+                    autocomplete="new-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="auth-btn">
+                Create Account
+            </button>
+
+            <p class="auth-footer">
+                Already have an account?
+                <a href="{% url 'login_' %}">Login</a>
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

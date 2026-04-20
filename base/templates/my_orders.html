@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+
+{% block title %}My Orders | ShopSphere{% endblock %}
+
+{% block content %}
+
+<div class="orders-container">
+
+    <h2>My Orders</h2>
+
+    {% if orders %}
+
+    <div class="table-wrapper">
+
+        <table class="orders-table">
+
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.product.pname }}</td>
+                    <td>₹{{ order.price }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>
+                        <span class="status-badge">
+                            {{ order.status }}
+                        </span>
+                    </td>
+                    <td>{{ order.created_at|date:"d M Y" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+    </div>
+
+    {% else %}
+
+    <div class="empty-state">
+        You have no orders yet.
+    </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

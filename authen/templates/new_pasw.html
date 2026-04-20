@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+{% block title %}Create New Password | ShopSphere{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <form method="POST" class="form-card">
+        {% csrf_token %}
+
+        <h2>Create New Password</h2>
+
+        <p class="form-subtitle">
+            Set a strong new password to secure your account.
+        </p>
+
+        <label for="new_pass">New Password</label>
+
+        <input
+            type="password"
+            id="new_pass"
+            name="new_pass"
+            placeholder="Enter new password"
+            autocomplete="new-password"
+            required
+        >
+
+        <button type="submit" class="form-btn">
+            Update Password
+        </button>
+
+        <div class="form-footer">
+            Remembered it?
+            <a href="{% url 'login_' %}">Login</a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'main.html' %}
+
+{% block title %}My Cart | ShopSphere{% endblock %}
+
+{% block content %}
+
+<div class="cart-container">
+
+    <!-- LEFT SIDE -->
+    <div class="cart-items">
+
+        {% if cartproducts %}
+            <h1 class="cart-title">My Cart</h1>
+        {% endif %}
+
+        {% if cartproducts %}
+
+            {% for i in cartproducts %}
+            <div class="cart-item">
+
+                <!-- Number -->
+                <div class="item-number">
+                    {{ forloop.counter }}
+                </div>
+
+                <!-- Main Content -->
+                <div class="item-content">
+
+                    <div class="item-details">
+                        <h3>{{ i.pname }}</h3>
+
+                        <p class="price-text">
+                            Price: ₹{{ i.price }}
+                        </p>
+
+                        <!-- Quantity -->
+                        <div class="qty-box">
+                            <a href="{% url 'sub' i.id %}" class="qty-btn">−</a>
+
+                            <span class="qty-count">
+                                {{ i.quatity }}
+                            </span>
+
+                            <a href="{% url 'add' i.id %}" class="qty-btn">+</a>
+                        </div>
+
+                        <p class="subtotal-text">
+                            Subtotal: ₹{{ i.totalprice }}
+                        </p>
+                    </div>
+
+                    <!-- Remove -->
+                    <div class="remove">
+                        <a href="{% url 'remove' i.id %}">
+                            Remove
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        {% else %}
+
+            <!-- EMPTY CART -->
+            <div class="empty-cart-box">
+                <h2>Your cart is empty</h2>
+                <p>Add products and start shopping.</p>
+
+                <a href="{% url 'home' %}" class="continue-btn">
+                    Continue Shopping
+                </a>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    {% if cartproducts %}
+    <div class="cart-summary">
+
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+            <span>Total Items</span>
+            <span>{{ cartproducts|length }}</span>
+        </div>
+
+        <div class="summary-row">
+            <span>Cart Total</span>
+            <span>₹{{ TA }}</span>
+        </div>
+
+        <a href="{% url 'checkout' %}" class="checkout-btn">
+            Proceed to Checkout
+        </a>
+
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

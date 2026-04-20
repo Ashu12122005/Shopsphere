@@ -1,0 +1,138 @@
+{% extends 'main.html' %}
+
+{% block title %}Know Us | ShopSphere{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="about-hero">
+
+    <div class="about-hero-content">
+
+        <h1>Shop Smarter. Live Better. 🛍️</h1>
+
+        <p>
+            ShopSphere is your complete online shopping destination for
+            fashion, electronics, beauty, home essentials and more —
+            all in one trusted marketplace.
+        </p>
+
+        <a href="{% url 'home' %}" class="about-btn">
+            Start Shopping
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- STORY -->
+<section class="about-section">
+
+    <div class="about-grid">
+
+        <div>
+            <h2>Our Story</h2>
+
+            <p>
+                ShopSphere was created to make online shopping simple,
+                affordable and reliable for everyone.
+            </p>
+
+            <p>
+                We believe customers deserve quality products,
+                transparent pricing and a seamless shopping experience.
+            </p>
+        </div>
+
+        <div class="about-card">
+            <h3>Our Mission</h3>
+            <p>
+                To connect people with products they love through
+                smart technology, fast delivery and trusted service.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY CHOOSE US -->
+<section class="about-section">
+
+    <h2 class="center-title">Why Choose ShopSphere?</h2>
+
+    <div class="feature-grid">
+
+        <div class="feature-card">
+            <span>🚚</span>
+            <h3>Fast Delivery</h3>
+            <p>Quick shipping across cities with reliable tracking.</p>
+        </div>
+
+        <div class="feature-card">
+            <span>💳</span>
+            <h3>Secure Payments</h3>
+            <p>Safe checkout with trusted payment methods.</p>
+        </div>
+
+        <div class="feature-card">
+            <span>🔄</span>
+            <h3>Easy Returns</h3>
+            <p>Simple return policy for worry-free shopping.</p>
+        </div>
+
+        <div class="feature-card">
+            <span>🏷️</span>
+            <h3>Best Deals</h3>
+            <p>Affordable pricing with regular discounts.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- STATS -->
+<section class="stats-section">
+
+    <div class="stat-box">
+        <h2>10K+</h2>
+        <p>Happy Customers</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>1K+</h2>
+        <p>Products Available</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>100+</h2>
+        <p>Cities Served</p>
+    </div>
+
+    <div class="stat-box">
+        <h2>24/7</h2>
+        <p>Support Ready</p>
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="about-cta">
+
+    <h2>Everything You Need. One Marketplace.</h2>
+
+    <p>
+        Discover trusted products across categories with a smooth shopping experience.
+    </p>
+
+    <a href="{% url 'home' %}" class="about-btn">
+        Explore Now
+    </a>
+
+</section>
+
+{% endblock %}

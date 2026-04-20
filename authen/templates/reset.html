@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+
+{% block title %}Reset Password | ShopSphere{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <form method="POST" class="form-card">
+        {% csrf_token %}
+
+        <h2>Reset Your Password</h2>
+
+        <p class="form-subtitle">
+            Keep your account secure by updating your password.
+        </p>
+
+        {% if error_pasw %}
+        <div class="info-msg">
+            {{ error_pasw }}
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="form-error">
+            The entered old password is incorrect.
+        </div>
+        {% endif %}
+
+        {% if new_pass %}
+
+            <label for="new_pasw">New Password</label>
+
+            <input
+                type="password"
+                id="new_pasw"
+                name="new_pasw"
+                placeholder="Enter new password"
+                autocomplete="new-password"
+                required
+            >
+
+            <button type="submit" class="form-btn">
+                Update Password
+            </button>
+
+        {% else %}
+
+            <label for="old_pasw">Current Password</label>
+
+            <input
+                type="password"
+                id="old_pasw"
+                name="old_pasw"
+                placeholder="Enter current password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button type="submit" class="form-btn">
+                Continue
+            </button>
+
+        {% endif %}
+
+        <div class="form-footer">
+            Back to
+            <a href="{% url 'profile' %}">My Profile</a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

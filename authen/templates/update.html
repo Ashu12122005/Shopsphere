@@ -1,0 +1,75 @@
+{% extends 'main.html' %}
+
+{% block title %}Update Profile | ShopSphere{% endblock %}
+
+{% block content %}
+
+<div class="form-page">
+
+    <form method="POST" class="form-card">
+        {% csrf_token %}
+
+        <h2>Update Profile</h2>
+
+        <p class="form-subtitle">
+            Keep your personal information up to date.
+        </p>
+
+        <label for="fname">First Name</label>
+        <input
+            type="text"
+            id="fname"
+            name="fname"
+            placeholder="Enter first name"
+            value="{{ user.first_name }}"
+            autocomplete="given-name"
+            required
+        >
+
+        <label for="lname">Last Name</label>
+        <input
+            type="text"
+            id="lname"
+            name="lname"
+            placeholder="Enter last name"
+            value="{{ user.last_name }}"
+            autocomplete="family-name"
+            required
+        >
+
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter email address"
+            value="{{ user.email }}"
+            autocomplete="email"
+            required
+        >
+
+        <label for="uname">Username</label>
+        <input
+            type="text"
+            id="uname"
+            name="uname"
+            placeholder="Enter username"
+            value="{{ user.username }}"
+            autocomplete="username"
+            required
+        >
+
+        <button type="submit" class="form-btn">
+            Save Changes
+        </button>
+
+        <div class="form-footer">
+            Back to
+            <a href="{% url 'profile' %}">My Profile</a>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}

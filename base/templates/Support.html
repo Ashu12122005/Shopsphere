@@ -1,0 +1,121 @@
+{% extends 'main.html' %}
+
+{% block title %}Support | ShopSphere{% endblock %}
+
+{% block content %}
+
+<!-- HERO -->
+<section class="support-hero">
+
+    <div class="support-hero-content">
+
+        <h1>We're Here To Help 💬</h1>
+
+        <p>
+            Need assistance with orders, payments, returns or your account?
+            Our support team is ready to help you.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- SUPPORT OPTIONS -->
+<section class="support-section">
+
+    <h2 class="center-title">How Can We Help?</h2>
+
+    <div class="support-grid">
+
+        <div class="support-card">
+            <span>📦</span>
+            <h3>Order Help</h3>
+            <p>Track orders, cancellations and delivery updates.</p>
+        </div>
+
+        <div class="support-card">
+            <span>💳</span>
+            <h3>Payments</h3>
+            <p>Payment failures, refunds and billing support.</p>
+        </div>
+
+        <div class="support-card">
+            <span>🔄</span>
+            <h3>Returns</h3>
+            <p>Easy returns, replacements and refund status.</p>
+        </div>
+
+        <div class="support-card">
+            <span>👤</span>
+            <h3>Account</h3>
+            <p>Password reset, login and profile issues.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CONTACT FORM -->
+<section class="support-section">
+
+    <div class="support-contact">
+
+        <div class="contact-info">
+            <h2>Contact Support</h2>
+
+            <p>Email: support@shopsphere.com</p>
+            <p>Phone: +91 90000 00000</p>
+            <p>Hours: Mon - Sat, 9 AM to 8 PM</p>
+
+            <p class="contact-note">
+                We usually reply within 24 hours.
+            </p>
+        </div>
+
+        <form class="support-form" method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="name" placeholder="Your Name" required>
+
+            <input type="email" name="email" placeholder="Your Email" required>
+
+            <input type="text" name="subject" placeholder="Subject" required>
+
+            <textarea name="message" rows="5" placeholder="How can we help?" required></textarea>
+
+            <button type="submit" class="support-btn">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+<section class="support-section">
+
+    <h2 class="center-title">Frequently Asked Questions</h2>
+
+    <div class="faq-box">
+        <h3>How do I track my order?</h3>
+        <p>Go to My Orders page and view the latest order status.</p>
+    </div>
+
+    <div class="faq-box">
+        <h3>How long do refunds take?</h3>
+        <p>Refunds are usually processed within 5-7 business days.</p>
+    </div>
+
+    <div class="faq-box">
+        <h3>Can I cancel my order?</h3>
+        <p>Yes, before shipment confirmation.</p>
+    </div>
+
+</section>
+
+{% endblock %}

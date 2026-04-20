@@ -1,0 +1,74 @@
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <!-- BRAND -->
+        <div class="footer-col">
+            <h2 class="footer-logo">ShopSphere</h2>
+
+            <p>
+                Your complete online shopping destination for fashion,
+                electronics, beauty, home essentials and more.
+            </p>
+
+            <div class="footer-socials">
+                <a href="#" aria-label="Website">🌐</a>
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Instagram">📸</a>
+                <a href="#" aria-label="LinkedIn">💼</a>
+            </div>
+        </div>
+
+        <!-- QUICK LINKS -->
+        <div class="footer-col">
+            <h3>Quick Links</h3>
+
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'knowus' %}">Know Us</a></li>
+                <li><a href="{% url 'support' %}">Support</a></li>
+                <li><a href="{% url 'cart' %}">Cart</a></li>
+            </ul>
+        </div>
+
+        <!-- CUSTOMER CARE -->
+        <div class="footer-col">
+            <h3>Customer Care</h3>
+
+            <ul>
+                <li><a href="#">Shipping Policy</a></li>
+                <li><a href="#">Returns & Refunds</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+            </ul>
+        </div>
+
+        <!-- NEWSLETTER -->
+        <div class="footer-col">
+            <h3>Stay Updated</h3>
+
+            <p>Get offers, updates and latest deals.</p>
+
+            <form class="footer-form" method="POST">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Enter Email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- FOOTER BOTTOM -->
+    <div class="footer-bottom">
+        <p>© 2026 ShopSphere. All Rights Reserved.</p>
+
+        <p>
+            Designed & Developed by
+            <a href="https://regal-pudding-c9db6a.netlify.app/" target="_blank">
+                Ashutosh Bhanja
+            </a>
+        </p>
+    </div>
+
+</footer>

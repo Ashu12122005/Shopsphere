@@ -1,0 +1,333 @@
+{% extends 'main.html' %}
+
+{% block title %}Login | ShopSphere{% endblock %}
+
+{% block content %}
+
+<style>
+/* ===================================
+   PREMIUM ECOMMERCE LOGIN PAGE
+=================================== */
+
+.login-page{
+    width:min(92%,1350px);
+    margin:50px auto;
+}
+
+.login-wrapper{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:42px;
+    align-items:center;
+}
+
+/* LEFT SIDE */
+
+.login-left h1{
+    font-size:56px;
+    line-height:1.15;
+    font-weight:800;
+    color:#0f172a;
+    margin-bottom:16px;
+}
+
+.login-left h1 span{
+    color:#2563eb;
+}
+
+.login-left p{
+    font-size:18px;
+    color:#6b7280;
+    max-width:620px;
+    line-height:1.7;
+    margin-bottom:26px;
+}
+
+.features-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:28px;
+}
+
+.feature-box{
+    background:#ffffff;
+    padding:16px;
+    border-radius:18px;
+    box-shadow:0 10px 22px rgba(0,0,0,.06);
+    font-size:15px;
+    font-weight:700;
+    color:#111827;
+}
+
+.login-banner{
+    border-radius:26px;
+    overflow:hidden;
+    box-shadow:0 18px 45px rgba(0,0,0,.12);
+}
+
+.login-banner img{
+    width:100%;
+    display:block;
+    height:100%;
+    object-fit:cover;
+}
+
+/* RIGHT SIDE */
+
+.login-card{
+    background:#ffffff;
+    padding:38px;
+    border-radius:28px;
+    box-shadow:0 18px 45px rgba(0,0,0,.08);
+}
+
+.login-badge{
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:50px;
+    background:#eff6ff;
+    color:#2563eb;
+    font-size:13px;
+    font-weight:700;
+    margin-bottom:18px;
+}
+
+.login-card h2{
+    font-size:38px;
+    font-weight:800;
+    color:#111827;
+    margin-bottom:6px;
+}
+
+.login-card p{
+    color:#6b7280;
+    font-size:15px;
+    margin-bottom:24px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
+    display:block;
+    margin-bottom:8px;
+    font-size:14px;
+    font-weight:700;
+    color:#111827;
+}
+
+.form-control{
+    width:100%;
+    padding:15px 16px;
+    border:1px solid #dbe2ea;
+    border-radius:14px;
+    background:#f8fafc;
+    font-size:15px;
+    outline:none;
+    transition:.3s;
+}
+
+.form-control:focus{
+    border-color:#2563eb;
+    background:#fff;
+    box-shadow:0 0 0 4px rgba(37,99,235,.08);
+}
+
+.login-options{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:12px 0 24px;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.login-options a{
+    font-size:14px;
+    color:#2563eb;
+    font-weight:600;
+}
+
+.login-btn{
+    width:100%;
+    border:none;
+    padding:15px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.login-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 14px 26px rgba(37,99,235,.22);
+}
+
+.register-line{
+    text-align:center;
+    margin-top:24px;
+    color:#6b7280;
+    font-size:15px;
+}
+
+.register-line a{
+    color:#2563eb;
+    font-weight:700;
+}
+
+.secure-points{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-top:22px;
+}
+
+.point{
+    background:#f8fafc;
+    padding:12px;
+    border-radius:14px;
+    text-align:center;
+    font-size:14px;
+    font-weight:700;
+    color:#111827;
+}
+
+/* MOBILE */
+
+@media(max-width:992px){
+
+.login-wrapper{
+    grid-template-columns:1fr;
+}
+
+.login-left{
+    text-align:center;
+}
+
+.login-left p{
+    margin:auto auto 25px;
+}
+
+}
+
+@media(max-width:576px){
+
+.login-page{
+    width:94%;
+    margin:30px auto;
+}
+
+.login-left h1{
+    font-size:38px;
+}
+
+.login-left p{
+    font-size:15px;
+}
+
+.features-grid,
+.secure-points{
+    grid-template-columns:1fr;
+}
+
+.login-card{
+    padding:24px;
+}
+
+.login-card h2{
+    font-size:30px;
+}
+
+.login-banner{
+    border-radius:20px;
+}
+
+}
+</style>
+
+<div class="login-page">
+
+    <div class="login-wrapper">
+
+        <!-- LEFT SIDE -->
+        <div class="login-left">
+
+            <h1>
+                Shop Smarter With <span>ShopSphere</span>
+            </h1>
+
+            <p>
+                Login to access your cart, track orders, enjoy exclusive discounts,
+                faster checkout, and secure online shopping.
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-box">🛍 Premium Products</div>
+                <div class="feature-box">⚡ Fast Checkout</div>
+                <div class="feature-box">🚚 Quick Delivery</div>
+                <div class="feature-box">🔐 Secure Payments</div>
+            </div>
+
+            <div class="login-banner">
+                <img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?auto=format&fit=crop&w=1400&q=80" alt="Shopping Banner">
+            </div>
+
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="login-card">
+
+            <span class="login-badge">🔒 Secure Login</span>
+
+            <h2>Welcome Back</h2>
+            <p>Login to continue your shopping journey</p>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" name="uname" class="form-control" placeholder="Enter username" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" name="pasw" class="form-control" placeholder="Enter password" required>
+                </div>
+
+                <div class="login-options">
+                    <a href="#">Forgot Password?</a>
+                </div>
+
+                <button type="submit" class="login-btn">
+                    Login to ShopSphere
+                </button>
+
+            </form>
+
+            <div class="register-line">
+                Don’t have an account?
+                <a href="{% url 'register' %}">
+                    Create Account
+                </a>
+            </div>
+
+            <div class="secure-points">
+                <div class="point">🎁 Exclusive Offers</div>
+                <div class="point">📦 Order Tracking</div>
+                <div class="point">💳 Easy Payments</div>
+                <div class="point">⭐ Trusted Store</div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
