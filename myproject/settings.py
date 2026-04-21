@@ -1,6 +1,6 @@
 """
 Django settings for myproject project.
-Production Ready for Koyeb
+Local Development Ready
 """
 
 from pathlib import Path
@@ -13,23 +13,17 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY
 # ==================================================
 
-SECRET_KEY = os.environ.get(
-    "SECRET_KEY",
-    "django-insecure-change-this-before-production"
-)
+SECRET_KEY = "django-insecure-local-development-key"
 
-DEBUG = os.environ.get("DEBUG", "False") == "True"
+DEBUG = True
 
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    ".koyeb.app",
 ]
 
 
-CSRF_TRUSTED_ORIGINS = [
-    "https://*.koyeb.app",
-]
+CSRF_TRUSTED_ORIGINS = []
 
 
 # ==================================================
@@ -57,7 +51,6 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -103,33 +96,12 @@ DATABASES = {
     }
 }
 
-if os.environ.get("DATABASE_URL"):
-    import dj_database_url
-    DATABASES["default"] = dj_database_url.parse(
-        os.environ.get("DATABASE_URL"),
-        conn_max_age=600,
-        ssl_require=True
-    )
-
 
 # ==================================================
 # PASSWORD VALIDATION
 # ==================================================
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+AUTH_PASSWORD_VALIDATORS = []
 
 
 # ==================================================
@@ -155,8 +127,6 @@ STATICFILES_DIRS = [
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 
 # ==================================================
 # MEDIA FILES
@@ -171,21 +141,6 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # ==================================================
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
-# ==================================================
-# SECURITY FOR HTTPS (Koyeb Ready)
-# ==================================================
-
-SESSION_COOKIE_SECURE = not DEBUG
-CSRF_COOKIE_SECURE = not DEBUG
-SECURE_SSL_REDIRECT = not DEBUG
-
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-USE_X_FORWARDED_HOST = True
-
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
 
 
 # ==================================================
@@ -223,5 +178,5 @@ JAZZMIN_SETTINGS = {
 # PAYMENT KEYS
 # ==================================================
 
-RAZORPAY_KEY_ID = os.environ.get("RAZORPAY_KEY_ID", "")
-RAZORPAY_KEY_SECRET = os.environ.get("RAZORPAY_KEY_SECRET", "")
+RAZORPAY_KEY_ID = ""
+RAZORPAY_KEY_SECRET = ""
