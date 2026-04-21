@@ -1,5 +1,22 @@
-venv/
+# Python cache
 __pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+env/
+
+# Database
 db.sqlite3
-.env
+
+# Static collected files
 staticfiles/
+
+# Media uploads
+media/
+
+# Environment secrets
+.env
+
+# VS Code
+.vscode/

@@ -1,6 +1,6 @@
 """
 Django settings for myproject project.
-Production Ready for Render
+Production Ready for Koyeb
 """
 
 from pathlib import Path
@@ -23,11 +23,12 @@ DEBUG = os.environ.get("DEBUG", "False") == "True"
 ALLOWED_HOSTS = [
     "127.0.0.1",
     "localhost",
-    ".onrender.com",
+    ".koyeb.app",
 ]
 
+
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
+    "https://*.koyeb.app",
 ]
 
 
@@ -161,8 +162,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # MEDIA FILES
 # ==================================================
 
-MEDIA_URL = '/images/'
-MEDIA_ROOT = BASE_DIR / 'static/images'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 # ==================================================
@@ -173,7 +174,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # ==================================================
-# SECURITY FOR HTTPS (Render Ready)
+# SECURITY FOR HTTPS (Koyeb Ready)
 # ==================================================
 
 SESSION_COOKIE_SECURE = not DEBUG
